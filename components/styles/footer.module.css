@@ -1,0 +1,10 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensures the footer takes the full width */
+    /* Adds some padding for spacing */
+    background-color: rgb(83, 11, 83); /* Optional: Background color for better visibility */
+    color: white; /* Optional: Text color */
+}
