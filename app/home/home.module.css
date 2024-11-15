@@ -28,43 +28,55 @@
     color: rgb(53, 152, 190);
     margin-top: 1rem;
 }
+/* This styles the container around the services */
 .service {
-    padding: 4rem 5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal-width columns */
-    grid-template-rows: auto repeat(4, auto); /* First row for the title, 4 rows for <p> elements */
-    justify-content: center; /* Center grid items horizontally */
-    align-items: center; /* Center grid items vertically */
-    text-align: center; /* Center text inside each grid item */
-    gap: 2rem; /* Optional: space between grid items */
-    background: lightgray; /* Background color for the whole service section */
-}
-
-.service h1 {
-    grid-column: span 2; /* Make the <h1> span across both columns */
-    margin-bottom: 20px; /* Optional: spacing between the title and content below */
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 5rem;
+    background-color: lightgray; /* Optional: Add background color to the section */
+  }
+.service h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 2rem;
-    color: rgb(53, 152, 190); /* Color of the title */
+    color: rgb(53, 152, 190);
+    margin-bottom: 1rem;
 }
-
-.service p {
+  /* Grid container for services */
+  .serviceGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates two equal-width columns */
+    grid-template-rows: repeat(2, auto); /* Creates two rows */
+    gap: 2rem; /* Adds space between grid items */
+    text-align: center; /* Centers the text inside each grid item */
+  }
+  
+  /* Each grid item (the individual service) */
+  .serviceGrid p {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* Space between image and text */
-    padding: 15px; /* Padding inside each box */
-    border-radius: 8px; /* Rounded corners for each box */
-    background-color: #f0f0f0; /* Default background color for the boxes */
-    transition: background-color 0.3s ease; /* Smooth transition on hover */
-}
+    padding: 15px;
+    background-color: #f0f0f0; /* Light background for each service box */
+    border-radius: 8px; /* Rounded corners for each service item */
+    transition: background-color 0.3s ease; /* Smooth background color change */
+  }
+  
+  .serviceGrid p:hover {
+    background-color: purple; /* Slightly darker background on hover */
+    color: white;
+  }
+  
+  .serviceGrid img {
+    margin-bottom: 10px; /* Adds space between image and text */
+  }
+  
 
 
 
-/* Hover effect to change background color when hovering */
-.service p:hover {
-    background-color: #c8e6c9; /* Slightly darker background on hover */
-}
 .achievement{
     display: flex;
     flex-direction: column;

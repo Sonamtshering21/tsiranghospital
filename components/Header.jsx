@@ -2,48 +2,80 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const header = () => {
+const Header = () => {
   return (
+    <nav className="py-1 bg-white text-black flex justify-between items-center gap-2">
+      {/* Logo Section */}
+      <div className="flex items-center">
+        <Link href="/" className="ml-4">
+          <Image
+            src="/image2.jpg" // Directly reference the logo path in the public folder
+            alt="Logo"
+            width={50}
+            height={50}
+            className="object-contain mt-2 mb-2"
+            style={{
+              borderRadius: '50%',
+              border: '0.1rem solid #3498db',
+            }}
+          />
+        </Link>
+        <h3 className="font-bold pl-2">Tsirang Hospital</h3> {/* Optional title next to logo */}
+      </div>
 
-    <nav className="py-1 bg-white text-black flex justify-between items-center">
-    {/* Logo Section */}
-    <div className="flex items-center">
-      <Link href="/" className="ml-4">
-        <Image 
-          src="/image2.jpg" // Directly reference the logo path in the public folder
-          alt="Logo" 
-          width={50} 
-          height={50} 
-          className="object-contain mt-2 mb-2" 
-          style={{ borderRadius: '50%',
-                   border: '0.1rem solid #3498db'
-           }}
-        />
-      </Link>
-      <h3 className="font-bold pl-2">Tsirang Hospital</h3> {/* Optional title next to logo */}
-    </div>
+      {/* Navigation Links */}
+      <ul className="flex space-x-4 pr-4 group-hover:block">
+        <li>
+          <Link href="/home" className="hover:text-blue-500">
+            Home
+          </Link>
+        </li>
 
-    {/* Navigation Links */}
-    <ul className="flex space-x-4 pr-4">
-      <li>
-        <Link href="/home" className="hover:text-blue-500">
-          Home
+        {/* Services Menu with Submenu */}
+        <li className="relative group group-hover:block">
+        <Link href="/services" className="flex items-center space-x-2 gap-1 hover:text-blue-500">
+          Services
+          <Image src='/downarrow.png' alt='img' width={15} height={18} />
         </Link>
-      </li>
-      <li>
-        <Link href="/users" className="hover:text-blue-500">
-          Our Staff
-        </Link>
-      </li>
-      <li>
-        <Link href="/referencer" className="hover:text-blue-500">
-          News & Events
-        </Link>
-      </li>
-    </ul>
-  </nav>
-  
+
+          {/* Submenu under Services */}
+          <ul className="absolute left-0 hidden mt-0 space-y-2 bg-white shadow-lg group-hover:block">
+            <li>
+              <Link href="/services/odp" className="block px-2 py-2 hover:bg-gray-100 hover:text-blue-500">
+                ODP
+              </Link>
+            </li>
+            <li>
+              <Link href="/services/referral" className="block px-2 py-2 hover:text-blue-500 hover:bg-gray-100">
+                Referral
+              </Link>
+            </li>
+            <li>
+              <Link href="/services/medicalcertificate" className="block px-2 py-2 hover:text-blue-500 hover:bg-gray-100">
+                Medical certificate
+              </Link>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <Link href="/users" className="hover:text-blue-500">
+            Our Staff
+          </Link>
+        </li>
+        <li>
+          <Link href="/referencer" className="hover:text-blue-500">
+            News & Events
+          </Link>
+        </li>
+        <li>
+          <Link href="/referencer" className="hover:text-blue-500">
+            Login
+          </Link>
+        </li>
+      </ul>
+    </nav>
   )
 }
 
-export default header
+export default Header
