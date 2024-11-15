@@ -39,10 +39,11 @@ const page = () => {
         <p><Image src="/i2.png" alt='image' width={50} height={50} />4. Issuance of medical certificates</p>
     </div>
     <div className={styles.staff}>
-      <p>Total Staff: 169</p>
-      <p>Clinical: 65</p>
-      <p>Non Clinical: 69</p>
+      <p><span className={styles.number}>169</span> Total Staff</p>
+      <p><span className={styles.number}>65</span> Clinical</p>
+      <p><span className={styles.number}>69</span> Non Clinical</p>
     </div>
+    
     <div className={styles.achievement}>
       <h1>Gallery</h1>
     <Gallery images={images} />
