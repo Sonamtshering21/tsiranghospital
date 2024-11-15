@@ -90,4 +90,13 @@
     background-color: #ffcc00;
     color: black;
   }
-  
+  .staff{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    gap: 8em;
+    background-color: rgb(53, 152, 190);
+    color: white;
+    font-size: 2rem;
+  }

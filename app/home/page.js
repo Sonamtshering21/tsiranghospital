@@ -32,11 +32,16 @@ const page = () => {
         <p>To rehabilitate and promote healthy living</p>
     </div>
     <div className={styles.service}>
-        <h1>Services delivered by the Health Services</h1>
+        <h1>Services</h1>
         <p><Image src="/i1.png" alt='image' width={50} height={50} />1. OPD services of Hospital and BHUs</p>
         <p><Image src="/i4.png" alt='image' width={50} height={50} />2. Emergency response and ambulatory services</p>
         <p><Image src="/i3.png" alt='image' width={50} height={50} />3. Referral of patients</p>
         <p><Image src="/i2.png" alt='image' width={50} height={50} />4. Issuance of medical certificates</p>
+    </div>
+    <div className={styles.staff}>
+      <p>Total Staff: 169</p>
+      <p>Clinical: 65</p>
+      <p>Non Clinical: 69</p>
     </div>
     <div className={styles.achievement}>
       <h1>Gallery</h1>
