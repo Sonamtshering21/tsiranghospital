@@ -51,7 +51,7 @@ const page = () => {
             <li>Employment Verification Letter or Job Offer Letter from the employer</li>
             <li>Completed Employment Medical Form (PDF format)</li>
           </ul>
-          <p>Fee: Nu 150&frasl;-</p>
+          <p>Fee: Nu 100&frasl;-</p>
         </div>
 
         <div className={styles.mc2}>
@@ -79,7 +79,7 @@ const page = () => {
             <li>Driver&apos;s License Application Form (if applicable)</li>
             <li>Completed Medical Certificate Form (PDF format)</li>
           </ul>
-          <p>Fee: Nu 200&frasl;-</p>
+          <p>Fee: Nu 100&frasl;-</p>
         </div>
 
         <div className={styles.mc2}>
@@ -106,7 +106,7 @@ const page = () => {
             <li>Proof of completion of any food handling or safety courses (if applicable)</li>
             <li>Completed Food Handler Medical Form (PDF format)</li>
           </ul>
-          <p>Fee: Nu 150&frasl;-</p>
+          <p>Fee: Nu 100&frasl;-</p>
         </div>
       </div>
     </div>
