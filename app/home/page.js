@@ -5,6 +5,31 @@ import Footer from '@/components/Footer'
 import styles from '../home/home.module.css'
 import Gallery from '../../components/Gallery.jsx'
 import Link from 'next/link'; 
+import { useState, useEffect } from 'react'
+
+function AnimatedNumber({ targetNumber, duration }) {
+  const [currentNumber, setCurrentNumber] = useState(0);
+
+  useEffect(() => {
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1); // Progress goes from 0 to 1
+      const updatedNumber = Math.floor(progress * targetNumber);
+
+      setCurrentNumber(updatedNumber);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [targetNumber, duration]);
+
+  return <span>{currentNumber}</span>;
+}
 
 const page = () => {
   const images = ['/a1.jpg', '/a2.jpg', '/a3.jpg'];
@@ -35,41 +60,65 @@ const page = () => {
     <div className={styles.service}>
        <h1>Services</h1>
   <div className={styles.serviceGrid}>
-    <p>
-      <Link href="/services/odp" className="flex flex-col items-center space-x-2">
+   
+      <Link href="/services/odp" >
+      <p>
         <Image src="/i1.png" alt="image" width={50} height={50} />
         <span>1. OPD services of Hospital and BHUs</span>
+      </p>
       </Link>
-    </p>
+   
 
-    <p>
-      <Link href="/services/emergency" className="flex flex-col items-center space-x-2">
+   
+      <Link href="/services/emergency">
+      <p>
         <Image src="/i4.png" alt="image" width={50} height={50} />
         <span>2. Emergency response and ambulatory services</span>
+        </p>
       </Link>
-    </p>
+    
 
-    <p>
-      <Link href="/services/referral" className="flex flex-col items-center space-x-2">
+   
+      <Link href="/services/referral">
+      <p>
         <Image src="/i3.png" alt="image" width={50} height={50} />
         <span>3. Referral of patients</span>
+        </p>
       </Link>
-    </p>
+    
 
-    <p>
-      <Link href="/services/medicalcertificate" className="flex flex-col items-center space-x-2">
+    
+      <Link href="/services/medicalcertificate">
+      <p>
         <Image src="/i2.png" alt="image" width={50} height={50} />
         <span>4. Issuance of medical certificates</span>
+        </p>
       </Link>
-    </p>
+    
   </div>
 </div>
 
-    <div className={styles.staff}>
-      <p><span className={styles.number}>169</span> Total Staff</p>
-      <p><span className={styles.number}>65</span> Clinical</p>
-      <p><span className={styles.number}>69</span> Non Clinical</p>
+<div className={styles.staff}>
+      <p>
+        <span className={styles.number}>
+          <AnimatedNumber targetNumber={169} duration={1000} />
+        </span>{" "}
+        Total Staff
+      </p>
+      <p>
+        <span className={styles.number}>
+          <AnimatedNumber targetNumber={65} duration={1000} />
+        </span>{" "}
+        Clinical
+      </p>
+      <p>
+        <span className={styles.number}>
+          <AnimatedNumber targetNumber={69} duration={1000} />
+        </span>{" "}
+        Non Clinical
+      </p>
     </div>
+  );
     
     <div className={styles.achievement}>
       <h1>Gallery</h1>

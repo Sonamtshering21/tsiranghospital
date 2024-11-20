@@ -59,10 +59,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 15px;
+    padding: 30px;
     background-color: #f0f0f0; /* Light background for each service box */
     border-radius: 8px; /* Rounded corners for each service item */
     transition: background-color 0.3s ease; /* Smooth background color change */
+    border-top: 0.3rem solid purple ;
   }
   
   .serviceGrid p:hover {
