@@ -64,11 +64,18 @@ const Page = () => {
 
   return (
     <div>
-      <div className={styles.marqueecontainer}>
-        <div className={styles.marqueecontent}>
-          Notice: Please be informed that Dr. X is currently out of station and will be unavailable for medical consultations until further notice.
-        </div>
+    <div className={styles.marqueecontainer}>
+        <p className={styles.marquee_text}>
+          <Image src="/speaker.png" alt='img' width={33} height={33} />
+          Announcements: 
+          <marquee direction="left" >
+           <Image src='/newc.png' alt='img' width={33} height={33} className={styles.image_fade}/> Please be informed that Dr. X is currently out of station and will be unavailable for medical consultations until further notice.<Image src='/newc.png' alt='img' width={33} height={33} className={styles.image_fade}/>
+          </marquee>
+        </p>
       </div>
+
+
+
 
       <div className={styles.homepage}>
         <h1>Tsirang Hospital</h1>
@@ -139,6 +146,7 @@ const Page = () => {
         <h1>Gallery</h1>
         <Gallery images={images} />
       </div>
+      
       <Footer />
     </div>
   );

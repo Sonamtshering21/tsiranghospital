@@ -24,8 +24,9 @@
   color: lightslategray;
 }
 .homepage p span{
-  border: 0.1rem solid purple;
-  padding: 0.5rem;
+  border: 0.12rem solid #ac0aac;
+  padding: 0.5rem 2rem;
+  border-radius: 0.3rem;
 }
 .ourvalue{
     display: flex;
@@ -108,16 +109,46 @@
 }
 .achievement p{
     margin-bottom: 4rem;
+}.marqueecontainer {
+  display: flex; /* Use flexbox to align items in a row */
+  justify-content: flex-start; /* Align items to the start of the container */
+  align-items: center; /* Vertically align the items to the center */
+  padding: 0 1rem; /* Optional padding */
+  background-color: rgb(131, 2, 131); /* Background color */
+  color: white; /* Text color */
+  width: 100%; /* Make container span the full width */
+  font-size: 1rem;
 }
 
-.marqueecontainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1px;
-    background-color: yellow;
-    color: black;
-  }
+.marquee_text {
+  display: flex; /* Flexbox to align the content in a row */
+  align-items: center; /* Align image, text, and marquee vertically at the center */
+  gap: 10px; /* Add some space between elements */
+  width: 100%; /* Make sure the content takes full width */
+  font-size: 0.9rem;
+}
+
+.marquee_text marquee {
+  display: flex;
+  align-items: center; /* Ensure the content is aligned vertically at the center */
+}
+
+.marquee_text marquee img {
+  display: inline-block; /* Ensure the images stay in the same row */
+}
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; } /* Fully transparent at the start and end */
+  50% { opacity: 1; } /* Fully visible at the midpoint */
+}
+
+.image_fade {
+  animation: fadeInOut 2s infinite; /* Apply animation, 2 seconds duration, infinite loop */
+}
+
+
+
+
+
   .staff{
     display: flex;
     justify-content: center;

@@ -7,4 +7,5 @@
     /* Adds some padding for spacing */
     background-color: rgb(83, 11, 83); /* Optional: Background color for better visibility */
     color: white; /* Optional: Text color */
+    padding: 1rem 10rem;
 }
