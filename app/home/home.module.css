@@ -8,11 +8,24 @@
     height: 100vh; /* Makes the background take up the full viewport height */
     display: flex; /* Enables flexbox */
     justify-content: center; /* Centers the content horizontally */
-    align-items: flex-start; /* Aligns the content to the top */
+    flex-direction: column;
     padding-top: 50px; /* Adds some space from the top of the container */
     text-align: center; /* Centers the text inside the h1 */
     font-size: 3rem;
-    color: lightslategray;
+    color: rgb(85, 80, 80); 
+    padding-bottom: 25rem;
+    gap: 1rem;
+}
+.homepage p{
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  color: lightslategray;
+}
+.homepage p span{
+  border: 0.1rem solid purple;
+  padding: 0.5rem;
 }
 .ourvalue{
     display: flex;
@@ -24,9 +37,11 @@
     margin-bottom: 3rem;
 }
 .ourvalue h1{
+  
     font-size: 2rem;
     color: rgb(53, 152, 190);
     margin-top: 1rem;
+
 }
 /* This styles the container around the services */
 .service {
