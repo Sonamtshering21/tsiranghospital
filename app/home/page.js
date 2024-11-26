@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import styles from '../home/home.module.css';
 import Gallery from '../../components/Gallery.jsx';
 import Link from 'next/link';
+import Header from '@/components/Header'; 
 
 function useIntersection(ref, options) {
   const [isVisible, setIsVisible] = useState(false);
@@ -64,6 +65,7 @@ const Page = () => {
 
   return (
     <div>
+      <Header />
     <div className={styles.marqueecontainer}>
         <p className={styles.marquee_text}>
           <Image src="/speaker.png" alt='img' width={33} height={33} />

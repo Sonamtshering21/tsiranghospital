@@ -1,12 +1,19 @@
+import { authOptions } from "@/components/auth";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
+export default async function Home() {
+  // Get the session on the server side
+  const session = await getServerSession(authOptions);
 
-import Home from '@/app/home/page'
+  // Redirect to the dashboard if a session exists
+  if (session) {
+    redirect("/dashboard");
+  } else {
+    // Redirect to the home page if no session exists
+    redirect("/home");
+  }
 
-
-export default function Homepage() {
-  return (
-   <div>
-    <Home />
-   </div>
-  );
+  // Optionally, you can return null here if redirecting immediately
+  return null;
 }

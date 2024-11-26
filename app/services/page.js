@@ -1,8 +1,10 @@
 import React from 'react'
 import styles from '../services/services.module.css'
-
+import Header from '@/components/Header'; 
 const page = () => {
   return (
+    <>
+    <Header/>
     <div className={styles.servicespage}>
         <div>
         <h1>1. OPD services of Hospital and BHUs</h1>
@@ -29,7 +31,7 @@ const page = () => {
                     <h3>4.Food handler</h3>
                 </div>
             </div>
-    </div>
+    </div></>
   )
 }
 

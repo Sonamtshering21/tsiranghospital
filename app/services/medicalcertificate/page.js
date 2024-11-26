@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from './medicalcertificate.module.css';
-
+import Header from '@/components/Header'; 
 const page = () => {
   return (
+    <>
+    <Header />
     <div className={styles.mc}>
       <h1>Issuance of Medical Certificates</h1>
       <div className={styles.mc1}>
@@ -109,7 +111,7 @@ const page = () => {
           <p>Fee: Nu 100&frasl;-</p>
         </div>
       </div>
-    </div>
+    </div></>
   );
 };
 
