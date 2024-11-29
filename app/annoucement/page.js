@@ -20,10 +20,12 @@ const Page = () => {
         }
 
         const data = await response.json();
-        setAnnouncements(data.announcements || []); // Ensure announcements is an array
+        const sortedAnnouncements = data.announcements.sort((a, b) => 
+          new Date(b.upload_date) - new Date(a.upload_date)
+        ); // Sort announcements by upload_date in descending order
 
-        // Show the first 4 announcements
-        setVisibleAnnouncements(data.announcements.slice(0, 4));
+        setAnnouncements(sortedAnnouncements); // Set all announcements in sorted order
+        setVisibleAnnouncements(sortedAnnouncements.slice(0, 4)); // Show the first 4 announcements
       } catch (err) {
         setError(err.message); // Update state with error message
       } finally {
@@ -35,7 +37,7 @@ const Page = () => {
   }, []);
 
   const loadMoreAnnouncements = () => {
-    // Load the next 4 announcements
+    // Load the next 4 announcements from the sorted array
     const nextAnnouncements = announcements.slice(nextIndex, nextIndex + 4);
     setVisibleAnnouncements((prev) => [...prev, ...nextAnnouncements]);
     setNextIndex(nextIndex + 4); // Update the index for the next batch
@@ -88,28 +90,31 @@ const Page = () => {
 
                 {/* Render File/Image Directly */}
                 {announcement.file_url && (
-                  <div>
-                    {/\.(jpeg|jpg|png|gif|webp)$/i.test(announcement.file_url) ? (
-                      // If the file is an image
-                      <Image
-                        src={announcement.file_url}
-                        alt="Announcement file"
-                        style={{
-                          maxWidth: '100%',
-                          height: 'auto',
-                          marginTop: '10px',
-                        }}
-                      />
-                    ) : (
-                      // Handle non-image files (e.g., PDF, video, etc.)
-                      <p>
-                        <a href={announcement.file_url} target="_blank" rel="noopener noreferrer">
-                          View File
-                        </a>
-                      </p>
-                    )}
-                  </div>
-                )}
+                <div>
+                  {/\.(jpeg|jpg|png|gif|webp)$/i.test(announcement.file_url) ? (
+                    // If the file is an image
+                    <Image
+                      src={announcement.file_url}
+                      alt="Announcement file"
+                      width={500} // You can adjust this width according to your layout
+                      height={300} // Adjust this height as well
+                      style={{
+                        maxWidth: '100%',
+                        height: 'auto',
+                        marginTop: '10px',
+                      }}
+                    />
+                  ) : (
+                    // Handle non-image files (e.g., PDF, video, etc.)
+                    <p>
+                      <a href={announcement.file_url} target="_blank" rel="noopener noreferrer">
+                        View File
+                      </a>
+                    </p>
+                  )}
+                </div>
+              )}
+
               </li>
             ))}
           </ul>

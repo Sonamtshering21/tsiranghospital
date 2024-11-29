@@ -1,7 +1,7 @@
 'use client';  // Ensures client-side rendering
-
-import React, { useState } from 'react';
-import styles from '../componenetsadminsec/stylecomp/imagestyle.module.css'
+import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
+import styles from '../componenetsadminsec/stylecomp/imagestyle.module.css';
 
 const Picture = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -9,6 +9,56 @@ const Picture = () => {
   const [loading, setLoading] = useState(false);
   const [fileUrl, setFileUrl] = useState(null);
   const [announcement, setAnnouncement] = useState('');
+  const [announcements, setAnnouncements] = useState([]); // Store all announcements
+  const [page, setPage] = useState(1);  // Track the current page
+  const [announcementsPerPage] = useState(5);  // Number of announcements to display per page
+//delete
+const handleDelete = async (id) => {
+  if (window.confirm('Are you sure you want to delete this announcement?')) {
+    try {
+      const response = await fetch(`/api/announcements/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete announcement');
+      }
+
+      // If successful, update the state to remove the deleted announcement
+      setAnnouncements(announcements.filter((announcement) => announcement.id !== id));
+      alert('Announcement deleted successfully');
+    } catch (error) {
+      alert('Error: ' + error.message);
+    }
+  }
+};
+
+
+  // Fetch all announcements
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      try {
+        const response = await fetch('/api/announcements'); // Replace with your actual API route
+        const data = await response.json();
+
+        // Sort announcements by upload date in descending order
+        const sortedAnnouncements = data.announcements.sort((a, b) => 
+          new Date(b.upload_date) - new Date(a.upload_date)
+        );
+
+        setAnnouncements(sortedAnnouncements);
+      } catch (error) {
+        console.error('Error fetching announcements:', error);
+      }
+    };
+
+    fetchAnnouncements();
+  }, []);
+
+  // Calculate the announcements to display based on the current page
+  const indexOfLastAnnouncement = page * announcementsPerPage;
+  const indexOfFirstAnnouncement = indexOfLastAnnouncement - announcementsPerPage;
+  const currentAnnouncements = announcements.slice(indexOfFirstAnnouncement, indexOfLastAnnouncement);
 
   // Handle file selection
   const handleFileChange = (e) => {
@@ -112,9 +162,96 @@ const Picture = () => {
     }
   };
 
+  // Handle "See More" click
+  const handleSeeMore = () => {
+    setPage(page + 1);
+  };
+
   return (
     <div className={styles.imagepage}>
       <h1>Upload File and Announcement</h1>
+      {/* Show Announcements in Table Format */}
+      <div>
+        <h2>All Announcements</h2>
+        <table className="min-w-full table-auto border-collapse border border-gray-400">
+  <thead>
+    <tr>
+      <th className="px-4 py-2 border-b border-gray-500">ID</th>
+      <th className="px-4 py-2 border-b border-gray-500">Text</th>
+      <th className="px-4 py-2 border-b border-gray-500">File</th>
+      <th className="px-4 py-2 border-b border-gray-500">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+      {currentAnnouncements.map((announcement, index) => (
+        <tr key={index}>
+          <td className="px-4 py-2 border-b border-r border-gray-400">
+            {index + 1 + (page - 1) * announcementsPerPage}
+          </td>
+          <td className="px-4 py-2 border-b border-r border-gray-400">
+            {announcement.announcement_text || 'No Text'}
+          </td>
+          <td className="px-4 py-2 border-b border-gray-400">
+            {announcement.file_url && (
+              <div>
+                {/\.(jpeg|jpg|png|gif|webp)$/i.test(announcement.file_url) ? (
+                  <Image
+                    src={announcement.file_url}
+                    alt="Announcement file"
+                    width={200}
+                    height={200}
+                    className="max-w-full h-auto mt-2"
+                  />
+                ) : (
+                  <p>
+                    <a href={announcement.file_url} target="_blank" rel="noopener noreferrer">
+                      View File
+                    </a>
+                  </p>
+                )}
+              </div>
+            )}
+          </td>
+          <td className="px-4 py-2 border-b border-gray-400">
+        <button
+          onClick={() => handleDelete(announcement.id)}
+          style={{
+            padding: '5px 10px',
+            backgroundColor: 'red',
+            color: 'white',
+            border: 'none',
+            cursor: 'pointer',
+            borderRadius: '5px',
+          }}
+        >
+          Delete
+        </button>
+      </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+
+
+        {/* "See More" Button */}
+        {announcements.length > indexOfLastAnnouncement && (
+          <button
+            onClick={handleSeeMore}
+            style={{
+              marginTop: '20px',
+              padding: '10px 20px',
+              backgroundColor: '#0070f3',
+              color: 'white',
+              border: 'none',
+              cursor: 'pointer',
+              borderRadius: '5px',
+            }}
+          >
+            See More
+          </button>
+        )}
+      </div>
 
       {/* Announcement Input */}
       <div>
@@ -197,10 +334,8 @@ const Picture = () => {
       {/* Display uploaded file URL */}
       {fileUrl && (
         <div>
-          <h2>Uploaded File:</h2>
-          <a href={fileUrl} target="_blank" rel="noopener noreferrer">
-            {fileUrl}
-          </a>
+          <h2>Uploaded File URL:</h2>
+          <p>{fileUrl}</p>
         </div>
       )}
     </div>

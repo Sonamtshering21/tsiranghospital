@@ -1,4 +1,4 @@
-import { error } from 'console';
+
 import supabase from '../../../lib/subabase';  // Adjust this import according to your actual Supabase setup
 import { NextResponse } from 'next/server';
 
@@ -8,7 +8,6 @@ export async function POST(request) {
 
     // Validate input: ensure at least one field is provided
     if (!announcement && !fileUrl) {
-      console.log(error)
       return NextResponse.json(
         { error: 'Either announcement text or file URL must be provided.' },
         { status: 400 }
@@ -16,17 +15,17 @@ export async function POST(request) {
     }
 
     // Insert into Supabase
-    const { data} = await supabase
+    const { data,error} = await supabase
       .from('announcementsth') // Ensure the table name matches your schema
       .insert([{
         announcement_text: announcement || null, // Set to null if not provided
         file_url: fileUrl || null, // Set to null if not provided
       }])
-      .select();
+      .select('*');
 
     // Handle insertion error
     if (error) {
-      console.log(error)
+      console.error('Unexpected server error:', error);
       return NextResponse.json(
         { error: error.message || 'Failed to insert announcement into the database' },
         { status: 500 }
@@ -35,7 +34,6 @@ export async function POST(request) {
 
     // Ensure data is valid and contains an ID
     if (!data || !data[0] || !data[0].id) {
-      console.log(error)
       return NextResponse.json(
         { error: 'Failed to retrieve announcement ID from the database' },
         { status: 500 }
@@ -50,7 +48,7 @@ export async function POST(request) {
 
   } catch (error) {
     // Handle unexpected errors
-    console.log(error)
+    console.error('Unexpected server error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 }
@@ -71,8 +69,7 @@ export async function GET() {
       announcements: data || [], // Return an empty array if no data
     });
   } catch (error) {
-    console.log(error);
-    
+    console.error('Unexpected server error:', error);
     // Handle unexpected errors
     return NextResponse.json(
       { error: 'Internal Server Error' },
