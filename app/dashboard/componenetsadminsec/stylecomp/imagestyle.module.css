@@ -1,0 +1,7 @@
+.imagepage{
+    max-height: 1000vh;
+    height: 90vh;
+}
+.imagepage h1{
+    font-size: 2rem;
+}

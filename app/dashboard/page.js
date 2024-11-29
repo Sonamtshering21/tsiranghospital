@@ -1,10 +1,10 @@
 import React from 'react'
-import Header from '@/components/Header'; 
+import styles from './componenetsadminsec/sidebar.module.css'
 const page = () => {
   return (
-    <div>
-        <Header />
-      admin section
+    <div className={styles.adminpage}>
+        welcome to admin portal
+
     </div>
   )
 }

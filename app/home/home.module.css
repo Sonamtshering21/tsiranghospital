@@ -9,7 +9,7 @@
     display: flex; /* Enables flexbox */
     justify-content: center; /* Centers the content horizontally */
     flex-direction: column;
-    padding-top: 50px; /* Adds some space from the top of the container */
+    padding-top: 4rem; /* Adds some space from the top of the container */
     text-align: center; /* Centers the text inside the h1 */
     font-size: 3rem;
     color: rgb(85, 80, 80); 
@@ -23,6 +23,7 @@
   gap: 3rem;
   color: lightslategray;
 }
+
 .homepage p span{
   border: 0.12rem solid #ac0aac;
   padding: 0.5rem 2rem;

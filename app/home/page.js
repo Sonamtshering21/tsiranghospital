@@ -75,15 +75,13 @@ const Page = () => {
           </marquee>
         </p>
       </div>
-
-
-
-
+      
       <div className={styles.homepage}>
         <h1>Tsirang Hospital</h1>
         <p><span>Accessible</span><span>Equitable</span> <span>Reliable </span></p>
         <p>Health Services</p>
       </div>
+
       <div className={styles.ourvalue}>
         <h1>Vision</h1>
         <p>A Dzongkhag with the best health infrastructures and services</p>
@@ -142,6 +140,10 @@ const Page = () => {
           </span>{" "}
           Non Clinical
         </p>
+      </div>
+      <div className={styles.ourvalue}>
+        <h1>Announcements</h1>
+        <p>This is to inform all people that our health service is open from 12 to 13</p>
       </div>
 
       <div className={styles.achievement}>

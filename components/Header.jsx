@@ -29,7 +29,6 @@ const Header = () => {
         </Link>
         <h3 className="font-bold pl-2">Tsirang Hospital</h3>
       </div>
-
       <ul className="flex space-x-4 pr-4 group-hover:block">
         <li>
           <Link href="/home" className="hover:text-blue-500">Home</Link>
