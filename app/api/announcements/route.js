@@ -1,6 +1,6 @@
+import { error } from 'console';
 import supabase from '../../../lib/subabase';  // Adjust this import according to your actual Supabase setup
 import { NextResponse } from 'next/server';
-
 
 export async function POST(request) {
   try {
@@ -8,6 +8,7 @@ export async function POST(request) {
 
     // Validate input: ensure at least one field is provided
     if (!announcement && !fileUrl) {
+      console.log(error)
       return NextResponse.json(
         { error: 'Either announcement text or file URL must be provided.' },
         { status: 400 }
@@ -15,7 +16,7 @@ export async function POST(request) {
     }
 
     // Insert into Supabase
-    const { data, error } = await supabase
+    const { data} = await supabase
       .from('announcementsth') // Ensure the table name matches your schema
       .insert([{
         announcement_text: announcement || null, // Set to null if not provided
@@ -23,10 +24,9 @@ export async function POST(request) {
       }])
       .select();
 
-    // Log the response data from Supabase
-
     // Handle insertion error
     if (error) {
+      console.log(error)
       return NextResponse.json(
         { error: error.message || 'Failed to insert announcement into the database' },
         { status: 500 }
@@ -35,6 +35,7 @@ export async function POST(request) {
 
     // Ensure data is valid and contains an ID
     if (!data || !data[0] || !data[0].id) {
+      console.log(error)
       return NextResponse.json(
         { error: 'Failed to retrieve announcement ID from the database' },
         { status: 500 }
@@ -49,6 +50,7 @@ export async function POST(request) {
 
   } catch (error) {
     // Handle unexpected errors
+    console.log(error)
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 }
@@ -56,22 +58,12 @@ export async function POST(request) {
   }
 }
 
-
-
 export async function GET() {
   try {
     // Fetch all rows from the 'announcementsth' table
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from('announcementsth') // Ensure the table name matches your schema
       .select('*'); // Select all columns
-
-    // Handle potential errors
-    if (error) {
-      return NextResponse.json(
-        { error: error.message || 'Failed to fetch announcements from the database' },
-        { status: 500 }
-      );
-    }
 
     // Return fetched data as a response
     return NextResponse.json({
@@ -79,6 +71,8 @@ export async function GET() {
       announcements: data || [], // Return an empty array if no data
     });
   } catch (error) {
+    console.log(error);
+    
     // Handle unexpected errors
     return NextResponse.json(
       { error: 'Internal Server Error' },

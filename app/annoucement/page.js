@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Header from '@/components/Header';
 
 const Page = () => {
@@ -90,7 +91,7 @@ const Page = () => {
                   <div>
                     {/\.(jpeg|jpg|png|gif|webp)$/i.test(announcement.file_url) ? (
                       // If the file is an image
-                      <img
+                      <Image
                         src={announcement.file_url}
                         alt="Announcement file"
                         style={{
