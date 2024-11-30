@@ -36,7 +36,7 @@ const Sidebar = () => {
                             height={30} // Adjust height as needed
                             className={styles.icon}
                         />
-                        <span>Notice</span>
+                        <span>Home</span>
                         </div>
                     </Link>
                 </li>
@@ -44,7 +44,7 @@ const Sidebar = () => {
                     <Link href="/admin/NowDrinksList" className={pathname === '/admin/NowDrinksList' ? styles.activeLink : ''}>
                         Now Drinks List
                     </Link>
-                </li>*/}
+                </li>
                 <li>
                     <Link href="/dashboard/pdf" className={pathname === '/dashboard/pdf' ? styles.activeLink : ''}>
                     <div className={styles.flexContainer}>
@@ -55,11 +55,11 @@ const Sidebar = () => {
                             height={30} // Adjust height as needed
                             className={styles.icon}
                         />
-                        <span>PDF</span>
+                        <span></span>
                         </div>
                                 </Link>
-                </li>
-                <li>
+                </li>*/}
+                {/*<li>
                     <Link href="/dashboard/mixed" className={pathname === '/dashboard/mixed' ? styles.activeLink : ''}>
                     <div className={styles.flexContainer}>
                         <Image 
@@ -69,10 +69,10 @@ const Sidebar = () => {
                             height={30} // Adjust height as needed
                             className={styles.icon}
                         />
-                        <span>Mixed</span>
+                        <span></span>
                         </div>
                                 </Link>
-                </li>
+                </li>*/}
                 
                 
             </ul>

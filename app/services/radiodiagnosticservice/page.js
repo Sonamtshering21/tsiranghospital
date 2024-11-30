@@ -1,12 +1,11 @@
 import React from 'react'
 import Header from '@/components/Header'; 
-import Footer from '@/components/Footer';
 const page = () => {
   return (
     <div>
-      <Header />
-      staff section
-      <Footer/>
+      <Header/>
+      
+      radio diagnostic service
     </div>
   )
 }

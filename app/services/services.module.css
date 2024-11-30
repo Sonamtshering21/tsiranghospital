@@ -4,3 +4,55 @@
     align-items: center;
     justify-content: center;
 }
+
+.container {
+ 
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px;
+  }
+  
+  .content {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .servicesList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .serviceCard {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .serviceCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .serviceName {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: purple;
+    margin-bottom: 10px;
+  }
+  
+  .serviceDays {
+    font-size: 1rem;
+    color: #666;
+  }
+  

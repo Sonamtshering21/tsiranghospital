@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '../services/services.module.css'
 import Header from '@/components/Header'; 
+import Footer from '@/components/Footer';
 const page = () => {
   return (
     <>
@@ -31,7 +32,7 @@ const page = () => {
                     <h3>4.Food handler</h3>
                 </div>
             </div>
-    </div></>
+    </div><Footer/></>
   )
 }
 

@@ -62,20 +62,86 @@ function AnimatedNumber({ targetNumber, duration }) {
 
 const Page = () => {
   const images = ['/a1.jpg', '/a2.jpg', '/a3.jpg'];
+  const [latestAnnouncement, setLatestAnnouncement] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [homePageDetails, setHomePageDetails] = useState(null); // To store fetched data
+
+  const [showMore, setShowMore] = useState(false);
+
+  const services = [
+    { title: 'OUT PATIENT DEPARTMENT SERVICES', image: '/i1.png', link: '/services/opd' },
+    { title: 'INPATIENT DEPARTMENT SERVICE', image: '/i4.png', link: '/services/emergency' },
+    { title: 'EMERGENCY SERVICES', image: '/i3.png', link: '/services/emergency' },
+    { title: 'MEDICAL CERTIFICATE SERVICE', image: '/i2.png', link: '/services/medicalcertificate' },
+    { title: 'TRADITIONAL MEDICINE SERVICE', image: '/t1.png', link: '/services/traditionalmedicineservice' },
+    { title: 'OT SERVICE', image: '/ot.png', link: '/services/otservice' },
+    { title: 'RADIODIAGNOSTIC SERVICES', image: '/ds.png', link: '/services/radiodiagnosticservice' },
+    { title: 'LABORATORY SERVICES', image: '/ls.png', link: '/services/laboratoryservice' },
+  ];
+
+  const handleToggle = () => {
+    setShowMore(!showMore);
+  };
+  // Fetch home page details
+  useEffect(() => {
+    const fetchHomePageDetails = async () => {
+      try {
+        const response = await fetch('/api/homepagedetail');
+        if (!response.ok) {
+          throw new Error('Failed to fetch home page details');
+        }
+        const data = await response.json();
+        setHomePageDetails(data.details[0]);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchHomePageDetails();
+  }, []); // This runs once on mount
+
+  // Fetch latest announcement
+  useEffect(() => {
+    const fetchLatestAnnouncement = async () => {
+      try {
+        const response = await fetch('/api/announcements');
+        if (!response.ok) {
+          throw new Error('Failed to fetch announcements');
+        }
+
+        const data = await response.json();
+        const sortedAnnouncements = data.announcements.sort((a, b) =>
+          new Date(b.upload_date) - new Date(a.upload_date)
+        );
+
+        setLatestAnnouncement(sortedAnnouncements[0] || null);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLatestAnnouncement();
+  }, []); // This runs once on mount
 
   return (
     <div>
       <Header />
-    <div className={styles.marqueecontainer}>
+      <div className={styles.marqueecontainer}>
         <p className={styles.marquee_text}>
           <Image src="/speaker.png" alt='img' width={33} height={33} />
           Announcements: 
-          <marquee direction="left" >
-           <Image src='/newc.png' alt='img' width={33} height={33} className={styles.image_fade}/> Please be informed that Dr. X is currently out of station and will be unavailable for medical consultations until further notice.<Image src='/newc.png' alt='img' width={33} height={33} className={styles.image_fade}/>
+          <marquee direction="left">
+            <Image src='/newc.png' alt='img' width={33} height={33} className={styles.image_fade} /> 
+            {homePageDetails?.headertext}
+            <Image src='/newc.png' alt='img' width={33} height={33} className={styles.image_fade} />
           </marquee>
         </p>
       </div>
-      
+
       <div className={styles.homepage}>
         <h1>Tsirang Hospital</h1>
         <p><span>Accessible</span><span>Equitable</span> <span>Reliable </span></p>
@@ -91,66 +157,129 @@ const Page = () => {
         <p>To prevent and control diseases</p>
         <p>To rehabilitate and promote healthy living</p>
       </div>
+
       <div className={styles.service}>
         <h1>Services</h1>
         <div className={styles.serviceGrid}>
-          <Link href="/services/odp">
-            <p>
-              <Image src="/i1.png" alt="image" width={50} height={50} />
-              <span>1. OPD services of Hospital and BHUs</span>
-            </p>
-          </Link>
-          <Link href="/services/emergency">
-            <p>
-              <Image src="/i4.png" alt="image" width={50} height={50} />
-              <span>2. Emergency response and ambulatory services</span>
-            </p>
-          </Link>
-          <Link href="/services/referral">
-            <p>
-              <Image src="/i3.png" alt="image" width={50} height={50} />
-              <span>3. Referral of patients</span>
-            </p>
-          </Link>
-          <Link href="/services/medicalcertificate">
-            <p>
-              <Image src="/i2.png" alt="image" width={50} height={50} />
-              <span>4. Issuance of medical certificates</span>
-            </p>
-          </Link>
+          {services.slice(0, 4).map((service, index) => (
+            <Link href={service.link} key={index}>
+              <p>
+                <Image src={service.image} alt="image" width={50} height={50} />
+                <span>{index + 1}. {service.title}</span>
+              </p>
+            </Link>
+          ))}
+          {showMore &&
+            services.slice(4).map((service, index) => (
+              <Link href={service.link} key={index + 4}>
+                <p>
+                  <Image src={service.image} alt="image" width={50} height={50} />
+                  <span>{index + 5}. {service.title}</span>
+                </p>
+              </Link>
+            ))
+          }
+        </div>
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+          <button
+            onClick={handleToggle}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#007BFF',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+            }}
+          >
+            {showMore ? 'Hide' : 'See More'}
+          </button>
         </div>
       </div>
+   
+
 
       <div className={styles.staff}>
-        <p>
-          <span className={styles.number}>
-            <AnimatedNumber targetNumber={169} duration={1000} />
-          </span>{" "}
-          Total Staff
-        </p>
-        <p>
-          <span className={styles.number}>
-            <AnimatedNumber targetNumber={65} duration={1000} />
-          </span>{" "}
-          Clinical
-        </p>
-        <p>
-          <span className={styles.number}>
-            <AnimatedNumber targetNumber={69} duration={1000} />
-          </span>{" "}
-          Non Clinical
-        </p>
-      </div>
+  <p>
+    <span className={styles.number}>
+      {/* Use the fetched total_staff number as the target for the animation */}
+      <AnimatedNumber targetNumber={homePageDetails?.total_staff || 0} duration={1000} />
+    </span>{" "}
+    Total Staff
+  </p>
+  <p>
+    <span className={styles.number}>
+      <AnimatedNumber targetNumber={homePageDetails?.no_clinical || 0} duration={1000} />
+    </span>{" "}
+    Clinical
+  </p>
+  <p>
+    <span className={styles.number}>
+      <AnimatedNumber targetNumber={homePageDetails?.no_non_clinical || 0} duration={1000} />
+    </span>{" "}
+    Non Clinical
+  </p>
+</div>
+
+
       <div className={styles.ourvalue}>
         <h1>Announcements</h1>
-        <p>This is to inform all people that our health service is open from 12 to 13</p>
+        {loading ? (
+          <p>Loading latest announcement...</p>
+        ) : error ? (
+          <p style={{ color: 'red' }}>{error}</p>
+        ) : latestAnnouncement ? (
+          <div style={{ padding: '15px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9' }}>
+            <p>
+              <strong>Created On:</strong> {new Date(latestAnnouncement.upload_date).toLocaleDateString()}
+            </p>
+            <p>{latestAnnouncement.announcement_text}</p>
+            {latestAnnouncement.file_url && (
+              /\.(jpeg|jpg|png|gif|webp)$/i.test(latestAnnouncement.file_url) ? (
+                <Image
+                  src={latestAnnouncement.file_url}
+                  alt="Announcement"
+                  width={500}
+                  height={300}
+                  style={{ maxWidth: '100%', height: 'auto', marginTop: '10px' }}
+                />
+              ) : (
+                <p>
+                  <a href={latestAnnouncement.file_url} target="_blank" rel="noopener noreferrer">
+                    View File
+                  </a>
+                </p>
+              )
+            )}
+          </div>
+        ) : (
+          <p>No announcements available at the moment.</p>
+        )}
+        
+        {/* See More Button */}
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+          <Link href="/annoucement">
+            <button
+              style={{
+                padding: '10px 20px',
+                backgroundColor: '#007BFF',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+              }}
+            >
+              See More Announcements
+            </button>
+          </Link>
+        </div>
       </div>
 
       <div className={styles.achievement}>
         <h1>Gallery</h1>
         <Gallery images={images} />
       </div>
-      
+
       <Footer />
     </div>
   );

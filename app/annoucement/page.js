@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const Page = () => {
   const [announcements, setAnnouncements] = useState([]); // State to store announcements
@@ -139,6 +140,7 @@ const Page = () => {
           </div>
         )}
       </div>
+      <Footer/>
     </div>
   );
 };

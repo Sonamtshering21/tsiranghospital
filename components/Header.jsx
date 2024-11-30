@@ -35,25 +35,8 @@ const Header = () => {
         </li>
         <li className="relative group group-hover:block">
           <Link href="/services" className="flex items-center space-x-2 gap-1 hover:text-blue-500">
-            Services
-            <Image src='/downarrow.png' alt='img' width={15} height={18} />
-          </Link>
-          {/* Submenu under Services */}
-          <ul className="absolute left-0 hidden mt-0 space-y-2 bg-white shadow-lg group-hover:block">
-            <li>
-              <Link href="/services/odp" className="block px-2 py-2 hover:bg-gray-100 hover:text-blue-500">OPD</Link>
-            </li>
-            <li>
-              <Link href="/services/emergency" className="block px-2 py-2 hover:text-blue-500 hover:bg-gray-100">Emergency</Link>
-            </li>
-            <li>
-              <Link href="/services/referral" className="block px-2 py-2 hover:text-blue-500 hover:bg-gray-100">Referral</Link>
-            </li>
-            <li>
-              <Link href="/services/medicalcertificate" className="block px-2 py-2 hover:text-blue-500 hover:bg-gray-100">Medical certificate</Link>
-            </li>
-          </ul>
-        </li>
+            Services</Link>
+          </li>
         <li>
           <Link href="/staff" className="hover:text-blue-500">Our Staff</Link>
         </li>
