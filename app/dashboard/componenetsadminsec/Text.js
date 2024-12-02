@@ -11,6 +11,7 @@ const AdminAnnouncement = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+    setStatus("Updating..."); // Inform the user that update is in progress
 
     // Collect all data in one object
     const body = {

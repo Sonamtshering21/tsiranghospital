@@ -5,7 +5,7 @@ import styles from '@/components/styles/footer.module.css'; // Assuming you have
 import Image from 'next/image';
 const Footer = () => {
   const [homePageDetails, setHomePageDetails] = useState(null); // To store fetched data
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchHomePageDetails = async () => {
       try {
@@ -35,7 +35,7 @@ const Footer = () => {
   
     fetchHomePageDetails();
   }, []); // This runs once on mount
-  if (!homePageDetails) return <div>Loading...</div>;
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className={styles.footer}>
