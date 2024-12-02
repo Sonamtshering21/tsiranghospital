@@ -7,10 +7,11 @@ export async function GET() {
       // Fetch all rows from the 'announcementsth' table
       const { data } = await supabase
         .from('homepagedetails') // Ensure the table name matches your schema
-        .select('*'); // Select all columns
+        .select('*') // Select all columns
+        .eq('id', 1); // Filter by id = 1
   
-      // Return fetched data as a response
-      console.log(data)
+      // Return fetched data as a responses
+     
       return NextResponse.json({
         message: 'homedetails retrieved successfully',
         details: data || [], // Return an empty array if no data

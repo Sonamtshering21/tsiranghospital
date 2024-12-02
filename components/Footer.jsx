@@ -1,7 +1,42 @@
+'use client'
 import React from 'react';
+import { useEffect,useState } from 'react';
 import styles from '@/components/styles/footer.module.css'; // Assuming you have a separate footer CSS
 import Image from 'next/image';
 const Footer = () => {
+  const [homePageDetails, setHomePageDetails] = useState(null); // To store fetched data
+
+  useEffect(() => {
+    const fetchHomePageDetails = async () => {
+      try {
+        const response = await fetch('/api/homepagedetail');
+        if (!response.ok) {
+          throw new Error('Failed to fetch home page details');
+        }
+  
+        const data = await response.json();
+        console.log(data); // This helps to inspect the structure of the response
+  
+        // Check if 'details' exists and contains data
+        if (data.details && data.details.length > 0) {
+          const homePageDetails = data.details[0]; // Get the first object from 'details' array
+          setHomePageDetails(homePageDetails); // Set the state with the first object
+          console.log(homePageDetails.headertext); // Access the specific field (e.g., headertext)
+        } else {
+          console.log('No details available');
+        }
+  
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchHomePageDetails();
+  }, []); // This runs once on mount
+  if (!homePageDetails) return <div>Loading...</div>;
+
   return (
     <div className={styles.footer}>
       {/* Flex container for the content */}
@@ -40,9 +75,10 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom: Copyright */}
-      <p className="text-lg text-center mt-7 mb-3 ">
-  © 2024 Tsirang Hospital. All rights reserved.
+      <p className="text-lg text-center mt-7 mb-3">
+  © {homePageDetails?.footer_year || '2024'} Tsirang Hospital. All rights reserved.
 </p>
+
 
     </div>
   );

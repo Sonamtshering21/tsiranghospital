@@ -6,19 +6,19 @@ import styles from '../home/home.module.css';
 import Gallery from '../../components/Gallery.jsx';
 import Link from 'next/link';
 import Header from '@/components/Header'; 
+
 function useIntersection(ref, options) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const currentRef = ref.current; // Capture ref.current value
     const observer = new IntersectionObserver(([entry]) => {
       setIsVisible(entry.isIntersecting);
     }, options);
 
-    if (currentRef) observer.observe(currentRef);
+    if (ref.current) observer.observe(ref.current);
 
     return () => {
-      if (currentRef) observer.unobserve(currentRef); // Use the captured currentRef
+      if (ref.current) observer.unobserve(ref.current);
     };
   }, [ref, options]);
 
@@ -91,16 +91,20 @@ const Page = () => {
         if (!response.ok) {
           throw new Error('Failed to fetch home page details');
         }
+  
         const data = await response.json();
         setHomePageDetails(data.details[0]);
+    
       } catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
+  
     fetchHomePageDetails();
   }, []); // This runs once on mount
+  
 
   // Fetch latest announcement
   useEffect(() => {
@@ -126,6 +130,7 @@ const Page = () => {
 
     fetchLatestAnnouncement();
   }, []); // This runs once on mount
+  if (!homePageDetails) return <div>Loading...</div>;
 
   return (
     <div>
@@ -136,7 +141,7 @@ const Page = () => {
           Announcements: 
           <marquee direction="left">
             <Image src='/newc.png' alt='img' width={33} height={33} className={styles.image_fade} /> 
-            {homePageDetails?.headertext}
+            {homePageDetails.headertext}
             <Image src='/newc.png' alt='img' width={33} height={33} className={styles.image_fade} />
           </marquee>
         </p>
