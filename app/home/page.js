@@ -209,19 +209,19 @@ const Page = () => {
   <p>
     <span className={styles.number}>
       {/* Use the fetched total_staff number as the target for the animation */}
-      <AnimatedNumber targetNumber={homePageDetails?.total_staff || 0} duration={1000} />
+      <AnimatedNumber targetNumber={169 || 0} duration={1000} />
     </span>{" "}
     Total Staff
   </p>
   <p>
     <span className={styles.number}>
-      <AnimatedNumber targetNumber={homePageDetails?.no_clinical || 0} duration={1000} />
+      <AnimatedNumber targetNumber={69 || 0} duration={1000} />
     </span>{" "}
     Clinical
   </p>
   <p>
     <span className={styles.number}>
-      <AnimatedNumber targetNumber={homePageDetails?.no_non_clinical || 0} duration={1000} />
+      <AnimatedNumber targetNumber={65 || 0} duration={1000} />
     </span>{" "}
     Non Clinical
   </p>
