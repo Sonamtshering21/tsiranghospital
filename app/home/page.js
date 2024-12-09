@@ -6,24 +6,25 @@ import styles from '../home/home.module.css';
 import Gallery from '../../components/Gallery.jsx';
 import Link from 'next/link';
 import Header from '@/components/Header'; 
-
 function useIntersection(ref, options) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const currentElement = ref.current; // Capture the current value of ref
     const observer = new IntersectionObserver(([entry]) => {
       setIsVisible(entry.isIntersecting);
     }, options);
 
-    if (ref.current) observer.observe(ref.current);
+    if (currentElement) observer.observe(currentElement);
 
     return () => {
-      if (ref.current) observer.unobserve(ref.current);
+      if (currentElement) observer.unobserve(currentElement);
     };
   }, [ref, options]);
 
   return isVisible;
 }
+
 
 function AnimatedNumber({ targetNumber, duration }) {
   const [currentNumber, setCurrentNumber] = useState(0);

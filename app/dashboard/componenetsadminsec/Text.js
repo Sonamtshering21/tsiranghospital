@@ -23,7 +23,7 @@ const AdminAnnouncement = () => {
     };
 
     try {
-      const response = await fetch("/api/homepagedetail", {
+      const response = await fetch('/api/homepagedetail', {
         method: "PUT",  // Use PUT instead of POST to update
         headers: {
           "Content-Type": "application/json",
