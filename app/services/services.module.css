@@ -16,6 +16,7 @@
     text-align: center;
     padding: 20px;
   }
+
   
   .title {
     font-size: 2rem;
@@ -56,3 +57,32 @@
     color: #666;
   }
   
+  .servicecontent{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    max-width: 100%;
+    margin: 1rem 8rem;
+    font-size: 1.1rem;
+    margin-bottom: 4rem;
+
+  }
+  .servicecontent p{
+    border: 0.1rem solid purple;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+   
+  }
+  .servicespage h1{
+    font-size: 1.5rem;
+    color: purple;
+    margin-top: 1rem;
+  }
+
+.first{
+  margin: 1rem 8rem;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+
+}

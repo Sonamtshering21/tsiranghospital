@@ -2,36 +2,35 @@ import React from 'react'
 import styles from '../services/services.module.css'
 import Header from '@/components/Header'; 
 import Footer from '@/components/Footer';
+import Image from 'next/image';
 const page = () => {
   return (
     <>
     <Header/>
+  
     <div className={styles.servicespage}>
-        <div>
-        <h1>1. OPD services of Hospital and BHUs</h1>
+    <h1>Services</h1>
+    <div className={styles.first}>
+    <p>We are committed to providing exceptional healthcare through a comprehensive range of services tailored to meet the diverse needs of our patients. Our Outpatient Department (OPD) Services offer expert consultations, diagnostics, and follow-up care in a convenient, non-hospitalized setting. For patients requiring extended medical attention, our Inpatient Department (IPD) Services ensure a comfortable and supportive environment with round-the-clock care.
+
+        Our Emergency Services operate 24/7, delivering prompt and lifesaving interventions during critical situations. We also provide Medical Certificate Services for official health documentation, including fitness assessments and medical history certifications.
+        </p>
         </div>
-        <div>
-        <h1>2. Emergency response and ambulatory services</h1>
-        <p>Emergency service is providing 24 hours emergency service for emergency cases; this includes emergency treatment, surgery, laboratory and other diagnostic and pharmacy services.This service will be provided on all working days from 9.00 AM to 3.00 PM. This service includes OPD consultations, laboratory and diagnostics and pharmacy services. (Note: All laboratory diagnostic and drugs will be provided on the prescription of a registered medical practitioner only)</p>
-        </div>
-        <div>
-        <h1>3. Referral of patients</h1>
-        </div>
-        <div>
-            <h1>4. Issuance of medical certificates</h1>
-                <div>
-                    <h3>1.General Purpose</h3>
-                    <div>
-                        <p>Requirements:</p>
-                        <p>CID photocopy</p>
-                        <p>Forms PDF</p>
-                        <p>Fees: Nu 100/-</p>
-                    </div>
-                    <h3>2.Employment</h3>
-                    <h3>3.Driver Licensing</h3>
-                    <h3>4.Food handler</h3>
-                </div>
-            </div>
+      
+    <div className={styles.servicecontent}>
+      <Image src='/s1.avif' alt='img' width={500} height={500} />
+      <p>For those seeking holistic treatment options, our Traditional Medicine Services integrate ancient healing practices with modern medical expertise. Our state-of-the-art Operating Theater (OT) Services are equipped for a wide spectrum of surgical procedures, ensuring precision and patient safety.
+
+        To support accurate diagnoses, we offer advanced Radiodiagnostic Services, utilizing cutting-edge imaging technologies. Additionally, our Laboratory Services deliver reliable and timely diagnostic testing to aid in effective treatment planning. For patients seeking privacy and personalized care, our Cabin Services provide serene and exclusive accommodations.
+
+        At the core of our mission is a dedication to excellence, compassion, and innovation in healthcare. We strive to deliver quality medical services that prioritize patient comfort, safety, and well-being.</p>
+    
+    </div>
+    
+   
+   
+        
+        
     </div><Footer/></>
   )
 }

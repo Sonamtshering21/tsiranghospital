@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Loader from '../../components/Loader'
 
 const Page = () => {
   const [announcements, setAnnouncements] = useState([]); // State to store announcements
@@ -48,10 +49,10 @@ const Page = () => {
     <div>
       <Header />
       <div style={{ padding: '20px' }}>
-        <h1>News Section</h1>
+        <div style={{display: 'flex', justifyContent:'center', color:'purple',fontSize: '1.2rem'}}><strong><h1>Announcements</h1></strong></div>
 
         {/* Loading State */}
-        {loading && <p>Loading announcements...</p>}
+        {loading ? <Loader /> : null}
 
         {/* Error State */}
         {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -62,7 +63,7 @@ const Page = () => {
         )}
 
         {!loading && !error && visibleAnnouncements.length > 0 && (
-          <ul style={{ listStyleType: 'none', padding: 0 }}>
+          <ul style={{ listStyleType: 'none', padding: 0, marginLeft: '10rem', marginRight: '10rem',paddingLeft: '12rem',paddingRight: '12rem'}}>
             {visibleAnnouncements.map((announcement, index) => (
               <li
                 key={index} // Use the index as the key for simplicity (if IDs aren't unique)
@@ -77,7 +78,7 @@ const Page = () => {
                 {/* Render Creation Date at the top */}
                 <div style={{ marginBottom: '10px', textAlign: 'right', fontSize: '0.9em', color: '#555' }}>
                   <p>
-                    <strong>Created On:</strong> 
+                    <strong>Posted On:</strong> 
                     {new Date(announcement.upload_date).toLocaleDateString()}
                   </p>
                 </div>
@@ -103,6 +104,7 @@ const Page = () => {
                         maxWidth: '100%',
                         height: 'auto',
                         marginTop: '10px',
+                          
                       }}
                     />
                   ) : (

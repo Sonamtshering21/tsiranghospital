@@ -1,4 +1,5 @@
 'use client';
+import Loader from '../../components/Loader';
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Footer from '@/components/Footer';
@@ -131,7 +132,7 @@ const Page = () => {
 
     fetchLatestAnnouncement();
   }, []); // This runs once on mount
-  if (!homePageDetails) return <div>Loading...</div>;
+  if (!homePageDetails) return <Loader/>;
 
   return (
     <div>
