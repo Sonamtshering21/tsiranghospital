@@ -13,7 +13,7 @@ const page = () => {
     <div className={styles.first}>
     <p>We are committed to providing exceptional healthcare through a comprehensive range of services tailored to meet the diverse needs of our patients. Our Outpatient Department (OPD) Services offer expert consultations, diagnostics, and follow-up care in a convenient, non-hospitalized setting. For patients requiring extended medical attention, our Inpatient Department (IPD) Services ensure a comfortable and supportive environment with round-the-clock care.
 
-        Our Emergency Services operate 24/7, delivering prompt and lifesaving interventions during critical situations. We also provide Medical Certificate Services for official health documentation, including fitness assessments and medical history certifications.
+         We also provide Medical Certificate Services for official health documentation, including fitness assessments and medical history certifications.
         </p>
         </div>
       
@@ -26,8 +26,20 @@ const page = () => {
         At the core of our mission is a dedication to excellence, compassion, and innovation in healthcare. We strive to deliver quality medical services that prioritize patient comfort, safety, and well-being.</p>
     
     </div>
-    
-   
+    <div className={styles.car}>
+      <h1>Our Emergency Services operate 24/7, delivering prompt and lifesaving interventions during 
+      critical situations</h1>
+        <div className={styles.loop_wrapper}>
+          <div className={styles.mountain}></div>
+          <div className={styles.hill}></div>
+          <div className={styles.tree}></div>
+          <div className={styles.tree}></div>
+          <div className={styles.tree}></div>
+          <div className={styles.rock}></div>
+          <div className={styles.truck}></div>
+          <div className={styles.wheels}></div>
+        </div> 
+    </div> 
    
         
         
