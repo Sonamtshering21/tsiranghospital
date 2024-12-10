@@ -35,7 +35,7 @@ const Footer = () => {
   
     fetchHomePageDetails();
   }, []); // This runs once on mount
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div></div>;
 
   return (
     <div className={styles.footer}>
