@@ -18,7 +18,8 @@ const page = () => {
         </div>
       
     <div className={styles.servicecontent}>
-      <Image src='/s1.avif' alt='img' width={500} height={500} />
+    <Image src="/s1.avif" alt="img" width={500} height={500} />
+
       <p>For those seeking holistic treatment options, our Traditional Medicine Services integrate ancient healing practices with modern medical expertise. Our state-of-the-art Operating Theater (OT) Services are equipped for a wide spectrum of surgical procedures, ensuring precision and patient safety.
 
         To support accurate diagnoses, we offer advanced Radiodiagnostic Services, utilizing cutting-edge imaging technologies. Additionally, our Laboratory Services deliver reliable and timely diagnostic testing to aid in effective treatment planning. For patients seeking privacy and personalized care, our Cabin Services provide serene and exclusive accommodations.

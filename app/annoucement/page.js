@@ -140,9 +140,14 @@ const Page = () => {
               See More
             </button>
           </div>
+          
         )}
+       
       </div>
-      <Footer/>
+      {!loading && !error && visibleAnnouncements.length > 0 && (
+  <Footer />
+)}
+
     </div>
   );
 };

@@ -140,7 +140,7 @@ const Page = () => {
       <div className={styles.marqueecontainer}>
         <p className={styles.marquee_text}>
           <Image src="/speaker.png" alt='img' width={33} height={33} />
-          Announcements: 
+          Announcements: {homePageDetails.headerText}
           <marquee direction="left">
             <Image src='/newc.png' alt='img' width={33} height={33} className={styles.image_fade} /> 
             {homePageDetails.headertext}
@@ -210,19 +210,19 @@ const Page = () => {
   <p>
     <span className={styles.number}>
       {/* Use the fetched total_staff number as the target for the animation */}
-      <AnimatedNumber targetNumber={169 || 0} duration={1000} />
+      <AnimatedNumber targetNumber={homePageDetails.total_staff || 0} duration={1000} />
     </span>{" "}
     Total Staff
   </p>
   <p>
     <span className={styles.number}>
-      <AnimatedNumber targetNumber={69 || 0} duration={1000} />
+      <AnimatedNumber targetNumber={homePageDetails.no_clinical || 0} duration={1000} />
     </span>{" "}
     Clinical
   </p>
   <p>
     <span className={styles.number}>
-      <AnimatedNumber targetNumber={65 || 0} duration={1000} />
+      <AnimatedNumber targetNumber={homePageDetails.no_non_clinical || 0} duration={1000} />
     </span>{" "}
     Non Clinical
   </p>

@@ -15,16 +15,18 @@ const AdminAnnouncement = () => {
 
     // Collect all data in one object
     const body = {
-      headerText,
-      totalWorkers,
-      clinicalWorkers,
-      nonClinicalWorkers,
-      footerYear
+      headerText: headerText || null,  // If headerText is empty, set it to null
+      totalWorkers: totalWorkers || null,  // If totalWorkers is empty, set it to null
+      clinicalWorkers: clinicalWorkers || null,  // If clinicalWorkers is empty, set it to null
+      nonClinicalWorkers: nonClinicalWorkers || null,  // If nonClinicalWorkers is empty, set it to null
+      footerYear: footerYear || null,  // If footerYear is empty, set it to null
     };
+   
 
     try {
+      
       const response = await fetch('/api/homepagedetail', {
-        method: "PUT",  // Use PUT instead of POST to update
+        method: "PATCH",  // Use PUT instead of POST to update
         headers: {
           "Content-Type": "application/json",
         },

@@ -76,7 +76,7 @@ const Footer = () => {
 
       {/* Footer Bottom: Copyright */}
       <p className="text-lg text-center mt-7 mb-3">
-  © {homePageDetails?.footer_year || '2024'} Tsirang Hospital. All rights reserved.
+  © {homePageDetails.footer_year || '2024'} Tsirang Hospital. All rights reserved.
 </p>
 
 
