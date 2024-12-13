@@ -9,6 +9,7 @@
     border-right: 1px solid #ddd; /* Optional: visual border */
     min-height: 100%; /* Ensures full height relative to the parent */
     background-color:white;
+    color: black;
   }
   .headersection{
     position: fixed;
@@ -31,6 +32,7 @@
     overflow-y: auto; /* Allow scrolling if content overflows */
     display: flex;
     flex-direction: column;
+    color: black;
 }
 
 .container {
