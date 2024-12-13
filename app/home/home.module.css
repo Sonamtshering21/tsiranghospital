@@ -87,6 +87,7 @@
     border-radius: 8px; /* Rounded corners for each service item */
     transition: background-color 0.3s ease; /* Smooth background color change */
     border-top: 0.3rem solid purple ;
+    color: black;
   }
   
   .serviceGrid p:hover {
